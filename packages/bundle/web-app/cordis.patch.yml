@@ -60,6 +60,7 @@
 
     - id: message-feedback
       name: '@deepseek-ai/dsh-message-feedback'
+      disabled: true  # privacy fork: no message ratings
       config:
         maxNoteBytes: 8192
 
@@ -485,6 +486,7 @@
     # acknowledgement toast, over the messageFeedback and sessionFeedback Remotes.
     - id: ui-message-feedback
       name: '@deepseek-ai/dsh-client-ui-message-feedback'
+      disabled: true  # privacy fork: no Like/Dislike buttons or feedback dialog
 
     # Model selection: the /model popupSelect + composer seat over session.models.
     - id: ui-model-selection
@@ -505,6 +507,7 @@
 
     - id: ui-settings-session-log
       name: '@deepseek-ai/dsh-client-ui-settings-session-log'
+      disabled: true  # privacy fork: no Session-log upload switch
 
     # The official settings pages: one companion package per host-plane
     # namespace, each registering its page into the Plugins page while the

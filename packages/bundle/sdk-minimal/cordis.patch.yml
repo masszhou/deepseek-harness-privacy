@@ -19,9 +19,11 @@
 
     - id: session-log-deepseek
       name: '@deepseek-ai/dsh-session-log-deepseek'
+      disabled: true  # privacy fork: never attach dsh_session_log to official API requests
 
     - id: plugin-package-inventory-deepseek
       name: '@deepseek-ai/dsh-plugin-package-inventory-deepseek'
+      disabled: true  # privacy fork: never attach dsh_plugin_packages to official API requests
 
     - id: deepseek-auth
       name: '@deepseek-ai/dsh-deepseek-auth'
