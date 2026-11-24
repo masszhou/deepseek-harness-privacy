@@ -8,6 +8,15 @@ It is built on an **everything-is-a-plugin** architecture and powered by [Cordis
 
 Documentation: [https://deepseek-harness.github.io/deepseek-harness/](https://deepseek-harness.github.io/deepseek-harness/)
 
+## Privacy fork
+
+This repository is a privacy fork of DeepSeek Harness. It differs from upstream only in bundle configuration: nine `disabled: true` rows, with no source change under `packages/`. See [PRIVACY-FORK.md](PRIVACY-FORK.md) for the full inventory, verification commands, and the upstream-merge checklist.
+
+- **No conversation upload after feedback.** Upstream uploads the complete Session log to a DeepSeek collector when a user clicks Like or Dislike or sends `/feedback`, for every model provider. This fork never loads that uploader.
+- **No feedback entry points.** The Like and Dislike buttons, the feedback dialog, and the `/feedback` command are absent from the Web UI.
+- **No Session log on official API requests.** Requests to the official DeepSeek API carry neither the Session log nor the plugin package inventory, and Settings has no switch that turns the upload on.
+- **Unchanged.** Desktop product analytics, which carries no message content, and the anonymous id header on DeepSeek provider requests stay as upstream.
+
 ## Developer preview
 
 DeepSeek Harness is in _developer preview_ and iterating rapidly. **THERE WILL BE COMPATIBILITY-BREAKING CHANGES.**
