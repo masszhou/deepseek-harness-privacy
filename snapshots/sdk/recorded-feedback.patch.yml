@@ -1,0 +1,4 @@
+# Privacy fork: scenarios that record feedback events need the upstream command.
+
+- id: command-feedback
+  disabled: false

@@ -594,6 +594,10 @@ export async function launchWebScaffold(options: LaunchOptions = {}): Promise<We
   const overlayPatches: PatchOptions[] = [
     // Without HMR the profile applies configuration changes at its next start.
     ...options.profile?.hmr === false ? [{ id: 'hmr', disabled: true }] : [],
+    // Privacy fork: shipped profiles disable these rows. The suite covers the upstream
+    // features behind them against local replay providers and collectors only.
+    ...['session-log-deepseek', 'plugin-package-inventory-deepseek', 'command-feedback', 'message-feedback',
+      'ui-message-feedback', 'ui-settings-session-log'].map(id => ({ id, disabled: false })),
     { id: 'session-log-deepseek', config: { enabled: false } },
     { id: 'ui-plugin-manager', config: { registryProbeEnabled: false } },
     ...mode === 'record' || options.deepSeekMissingCredential === true
@@ -639,6 +643,7 @@ export async function launchWebScaffold(options: LaunchOptions = {}): Promise<We
       ? { id: 'session-telemetry-otel', disabled: true }
       : {
         id: 'session-telemetry-otel',
+        disabled: false,
         config: {
           mode: options.telemetryMode ?? 'FEEDBACK_ONLY',
           exporter: { url: options.telemetryUrl },

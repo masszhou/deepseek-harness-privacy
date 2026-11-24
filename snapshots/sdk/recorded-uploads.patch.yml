@@ -1,0 +1,8 @@
+# Privacy fork: the recorded expected outputs include upstream's official-API
+# request fields. Replay sends them only to the local replay provider.
+
+- id: session-log-deepseek
+  disabled: false
+
+- id: plugin-package-inventory-deepseek
+  disabled: false

@@ -43,6 +43,8 @@ The dump lists the seven Web rows above as disabled. The three bundle tests fail
 2. Search for new outbound paths: new `ctx.deepseekLlmApiExtensions.register(` callers, new `ctx.otel.create` callers, new rows in the bundle patches whose names contain `telemetry`, `analytics`, `feedback`, `upload`, or `share`, and new hardcoded hosts under `packages/**/src`.
 3. Disable any new row that sends Session content, and add its id to this page and to the bundle test of its bundle.
 
-## Known differences from upstream expectations
+## Tests that cover upstream features
 
-Upstream documentation, the recorded-session expected outputs under `snapshots/`, and the feedback end-to-end tests describe the upstream defaults. They are unchanged here and do not describe this fork where they cover the disabled rows.
+The recorded-session expected outputs under `snapshots/sdk/` and the Web suite under `apps/web/tests/` cover the upstream feedback and Session-log features. They re-enable the disabled rows for the test process only: `snapshots/sdk/recorded-uploads.patch.yml` and `recorded-feedback.patch.yml` for SDK replay, and the overlay list in `apps/web/tests/scaffold.ts` for the Web suite. These runs talk to a local replay provider or a local collector, never to a production endpoint. The three bundle tests under [Verify](#verify) are the checks of the shipped defaults.
+
+Upstream package READMEs and `docs/` pages describe the upstream defaults and are unchanged; this page is the authority for what this fork loads.
