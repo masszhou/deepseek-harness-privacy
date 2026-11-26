@@ -25,29 +25,24 @@ Review the [safety notice](SAFETY.md) before running the project.
 
 ## Run
 
-### Run from `npm`
-
-Install `Node.js`, then run:
-
-```sh
-npx @deepseek-ai/dsh web
-```
-
-The command starts the Web UI at `http://127.0.0.1:3080` by default and opens it in the default browser for a local launch. An SSH launch only prints the host URL because the SSH client or editor owns the local forwarded address. Pass `--no-open` to run the server without opening a browser. See [Web UI guide](docs/user/guide/index.md).
+This fork runs from a source checkout only. The `@deepseek-ai/dsh` package on npm is the upstream build and does not contain the privacy changes, so `npx @deepseek-ai/dsh` is not a way to run this fork.
 
 ### Run from source
 
-To run from a repository checkout:
+Install Node.js 24.22.3 or newer in the 24.x line and `pnpm`, then check out a fork release tag. Each tag is named after the upstream release it is based on, with a `-privacy.<n>` suffix:
 
 ```sh
-git clone https://github.com/deepseek-ai/deepseek-harness.git
-cd deepseek-harness
+git clone https://github.com/masszhou/deepseek-harness-privacy.git
+cd deepseek-harness-privacy
+git checkout dsh-v0.2.3-alpha.2-privacy.1
 pnpm install
 pnpm run build
 pnpm dsh web
 ```
 
 `pnpm run build` prepares the repository artifacts. `pnpm dsh web` uses those built artifacts without rebuilding.
+
+The command starts the Web UI at `http://127.0.0.1:3080` by default and opens it in the default browser for a local launch. An SSH launch only prints the host URL because the SSH client or editor owns the local forwarded address. Pass `--no-open` to run the server without opening a browser. See [Web UI guide](docs/user/guide/index.md).
 
 ## Community and support
 
