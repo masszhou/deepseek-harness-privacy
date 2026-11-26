@@ -43,6 +43,12 @@ The dump lists the seven Web rows above as disabled. The three bundle tests fail
 2. Search for new outbound paths: new `ctx.deepseekLlmApiExtensions.register(` callers, new `ctx.otel.create` callers, new rows in the bundle patches whose names contain `telemetry`, `analytics`, `feedback`, `upload`, or `share`, and new hardcoded hosts under `packages/**/src`.
 3. Disable any new row that sends Session content, and add its id to this page and to the bundle test of its bundle.
 
+## Releases
+
+This fork runs from a source checkout only; it publishes no npm package, and `@deepseek-ai/dsh` on npm is the upstream build. A fork release is an annotated tag on `master` named `<upstream tag>-privacy.<n>`, for example `dsh-v0.2.3-alpha.2-privacy.1`. Upstream tags are never moved.
+
+For a new upstream release, merge the upstream tag, not upstream `master`, into this fork's `master`, complete the steps under [After merging upstream](#after-merging-upstream), update the tag named in the README, and tag the result. Increase `<n>` for a later fork change on the same upstream release.
+
 ## Tests that cover upstream features
 
 The recorded-session expected outputs under `snapshots/sdk/` and the Web suite under `apps/web/tests/` cover the upstream feedback and Session-log features. They re-enable the disabled rows for the test process only: `snapshots/sdk/recorded-uploads.patch.yml` and `recorded-feedback.patch.yml` for SDK replay, and the overlay list in `apps/web/tests/scaffold.ts` for the Web suite. These runs talk to a local replay provider or a local collector, never to a production endpoint. The three bundle tests under [Verify](#verify) are the checks of the shipped defaults.

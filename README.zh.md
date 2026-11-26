@@ -27,31 +27,26 @@ DeepSeek Harness 处于 _开发者预览_ 阶段，正在快速迭代。**未来
 
 ## 运行
 
-### 通过 `npm` 运行
-
-安装 `Node.js`，然后运行：
-
-```sh
-npx @deepseek-ai/dsh web
-```
-
-该命令默认会在 `http://127.0.0.1:3080` 启动 Web UI，本机启动时还会用默认浏览器打开页面。通过 SSH 启动时只打印宿主机 URL，因为本地转发地址由 SSH 客户端或编辑器持有。传入 `--no-open` 可仅运行服务器而不打开浏览器。详见 [Web UI 指南](docs/user/guide/index.zh.md)。
+本分支只能从源码检出运行。npm 上的 `@deepseek-ai/dsh` 包是上游构建，不包含隐私改动，因此 `npx @deepseek-ai/dsh` 不是运行本分支的方式。
 
 <a id="run-from-source"></a>
 
 ### 从源码运行
 
-如需从仓库源码运行：
+安装 24.x 系列中的 Node.js 24.22.3 或更高版本以及 `pnpm`，然后检出本分支的发布 tag。每个 tag 以其所基于的上游版本命名，并带有 `-privacy.<n>` 后缀：
 
 ```sh
-git clone https://github.com/deepseek-ai/deepseek-harness.git
-cd deepseek-harness
+git clone https://github.com/masszhou/deepseek-harness-privacy.git
+cd deepseek-harness-privacy
+git checkout dsh-v0.2.3-alpha.2-privacy.1
 pnpm install
 pnpm run build
 pnpm dsh web
 ```
 
 `pnpm run build` 会准备仓库产物。`pnpm dsh web` 会直接使用这些已构建产物，不会重新构建。
+
+该命令默认会在 `http://127.0.0.1:3080` 启动 Web UI，本机启动时还会用默认浏览器打开页面。通过 SSH 启动时只打印宿主机 URL，因为本地转发地址由 SSH 客户端或编辑器持有。传入 `--no-open` 可仅运行服务器而不打开浏览器。详见 [Web UI 指南](docs/user/guide/index.zh.md)。
 
 ## 社区与支持
 
