@@ -8,6 +8,15 @@ DeepSeek Harness（`dsh`）是由 [DeepSeek AI](https://deepseek.com) 开发的�
 
 文档：[https://deepseek-harness.github.io/deepseek-harness/](https://deepseek-harness.github.io/deepseek-harness/)
 
+## 隐私分支
+
+本仓库是 DeepSeek Harness 的隐私分支。它与上游的差异仅在 bundle 配置：九行 `disabled: true`，`packages/` 下没有源码改动。完整清单、验证命令和合并上游后的检查步骤见 [PRIVACY-FORK.md](PRIVACY-FORK.md)。
+
+- **反馈后不上传对话。** 上游在用户点击 Like、Dislike 或发送 `/feedback` 时，会把完整 Session log 上传到 DeepSeek 的收集端，且与模型 provider 无关。本分支不加载这个上传器。
+- **没有反馈入口。** Web UI 中没有 Like 和 Dislike 按钮、反馈对话框以及 `/feedback` 命令。
+- **官方 API 请求不携带 Session log。** 发往官方 DeepSeek API 的请求既不携带 Session log，也不携带 plugin 包清单；设置页中也没有可以打开上传的开关。
+- **保持不变。** Desktop 产品埋点（不含消息内容）以及 DeepSeek provider 请求中的匿名 id 请求头与上游一致。
+
 ## 开发者预览
 
 DeepSeek Harness 处于 _开发者预览_ 阶段，正在快速迭代。**未来将出现破坏兼容性的变更。**

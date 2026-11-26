@@ -758,6 +758,9 @@ const legacySdkCompositions = new Set([
   'system-prompt-in-history',
 ])
 const legacySdkContextPatch = fileURLToPath(new URL('./legacy-context.patch.yml', import.meta.url))
+// Privacy fork: shipped profiles disable these rows; the recorded expected outputs predate that.
+const recordedUploadsPatch = fileURLToPath(new URL('./recorded-uploads.patch.yml', import.meta.url))
+const recordedFeedbackPatch = fileURLToPath(new URL('./recorded-feedback.patch.yml', import.meta.url))
 
 function authoredPatches(scenario: CorpusScenario, replaying: boolean): string[] {
   const owner = compositionOwner(scenario)
@@ -806,6 +809,8 @@ async function runScenario(scenario: CorpusScenario): Promise<{
   await mkdir(patchRoot, { recursive: true })
   const assertions = SDK_ASSERTIONS[scenario.name] ?? {}
   const patches = [
+    recordedUploadsPatch,
+    ...scenario.manifest.environment?.DSH_SNAPSHOT_FEEDBACK === '1' ? [recordedFeedbackPatch] : [],
     ...legacySdkCompositions.has(scenario.manifest.composition) ? [legacySdkContextPatch] : [],
     ...authoredPatches(scenario, !recording),
     ...assertions.patches ?? [],

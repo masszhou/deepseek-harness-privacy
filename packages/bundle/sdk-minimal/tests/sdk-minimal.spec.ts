@@ -61,6 +61,10 @@ describe('dsh-sdk-minimal bundle', () => {
       ['session-checkpoint-policy', '@deepseek-ai/dsh-session-checkpoint-policy'],
     ])
     expect(rows.find(row => row.id === 'sdk-app-startup')?.config).toEqual({ profile: 'sdk-minimal' })
+    // Privacy fork: official-API request fields carrying Session content or plugin inventory stay unloaded.
+    for (const id of ['session-log-deepseek', 'plugin-package-inventory-deepseek']) {
+      expect(rows.find(row => row.id === id)?.disabled, id).toBe(true)
+    }
     expect(rows.find(row => row.id === 'sdk-jsonrpc-server')).toMatchObject({
       inject: ['sdkAppStartup', 'loader'],
       config: { maxTokensAsSuccess: false },

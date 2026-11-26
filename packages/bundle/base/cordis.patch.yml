@@ -42,6 +42,7 @@
 
     - id: session-log-deepseek
       name: '@deepseek-ai/dsh-session-log-deepseek'
+      disabled: true  # privacy fork: never attach dsh_session_log to official API requests
 
     - id: typert
       name: '@deepseek-ai/dsh-typert-registry'
@@ -84,6 +85,7 @@
 
     - id: plugin-package-inventory-deepseek
       name: '@deepseek-ai/dsh-plugin-package-inventory-deepseek'
+      disabled: true  # privacy fork: never attach dsh_plugin_packages to official API requests
 
     # The transport-independent default for Agents created by entry points.
     # Settings may supply a saved selection; consumers read it at creation time.
@@ -218,6 +220,7 @@
     # Every CLI exit path drains by disposing the root on SIGINT/SIGTERM.
     - id: session-telemetry-otel
       name: '@deepseek-ai/dsh-session-telemetry-otel'
+      disabled: true  # privacy fork: never upload Session logs after feedback
       config:
         mode: !!js process.env.DSH_TELEMETRY_MODE || 'FEEDBACK_ONLY'
         shutdownTimeoutMillis: 3000
@@ -334,6 +337,7 @@
 
     - id: command-feedback
       name: '@deepseek-ai/dsh-command-feedback'
+      disabled: true  # privacy fork: no /feedback entry point
 
     - id: goal
       name: '@deepseek-ai/dsh-goal'
